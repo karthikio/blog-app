@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  | Posts
+{% endblock %}
+
+{% block posts %}
+  <div class="posts-container">
+
+    {% for post in object_list %}
+    <div class="post-container">
+      <div class="post">
+        <div class="title-bar flex all-center just-between">
+          <div class="flex all-center just-between">
+            <div class="title-bar-pic-container">
+              {% if post.author.profile.profile_pic.url %}
+                <img class="title-bar-pic" src="{{ post.author.profile.profile_pic.url }}" alt="profile pic">
+              
+              {% endif %}
+            </div>
+            <b class="text">{{post.author}}</b>
+          </div>
+          <div class="mr10">
+            <p class="created text-mute ">{{post.created|date:'M d Y'}}</p>
+          </div>
+        </div>
+        <div class="content">
+          <h2 class="title">{{post.title}}</h2>
+          {% if post.image %}
+            <img class="post-pic" src="{{ post.image.url }}" alt="{{post.title}} image">
+          {% endif %}
+          <p class="text">
+            {{ post.body }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
