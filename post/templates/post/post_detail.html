@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  | {{object.title}}
+{% endblock %}
+
+{% block post %}
+  <div class="post-container">
+    <div class="post">
+      <div class="title-bar flex all-center just-between">
+        <div class="flex all-center just-between">
+          <div class="title-bar-pic-container">
+            {% if object.author.profile.profile_pic.url %}
+              <img class="title-bar-pic" src="{{ object.author.profile.profile_pic.url }}" alt="profile pic">
+            
+            {% endif %}
+          </div>
+          <b class="text"><a class="link-c" href="{% url 'profile-detail-view' object.author %}">{{object.author}}</a></b>
+        </div>
+        <div class="mr10">
+          <p class="created text-mute ">{{object.created|date:'M d Y'}}</p>
+        </div>
+      </div>
+      <div class="content">
+        <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' object.id %}">{{object.title}}</a></h2>
+        {% if object.image %}
+          <img class="post-pic" src="{{ object.image.url }}" alt="{{object.title}} image">
+        {% endif %}
+        <p class="text">
+          {{ object.body }}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

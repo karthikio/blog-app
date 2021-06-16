@@ -147,6 +147,16 @@ body{
   align-items: center;
 }
 
+.link-b{
+  text-decoration: none;
+  color: #0099ff;
+}
+
+.link-c{
+  text-decoration: none;
+  color: #ccc;
+}
+
 .text{
   color: #ccc;
 }

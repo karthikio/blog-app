@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  | {{ object }}'s Profile
+{% endblock %}
 
 {% block profile %}
 <div class="profile-container flex">
@@ -40,14 +43,14 @@
                     
                     {% endif %}
                   </div>
-                  <b class="text">{{post.author}}</b>
+                  <b class="text"><a class="link-c" href="{% url 'profile-detail-view' post.author %}">{{post.author}}</a></b>
                 </div>
                 <div class="mr10">
                   <p class="created text-mute ">{{post.created|date:'M d Y'}}</p>
                 </div>
               </div>
               <div class="content">
-                <h2 class="title">{{post.title}}</h2>
+                <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
                 {% if post.image %}
                 <img class="post-pic" src="{{ post.image.url }}" alt="{{post.title}} image">
                 {% endif %}

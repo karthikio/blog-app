@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 class PostListView(ListView):
@@ -7,5 +7,6 @@ class PostListView(ListView):
   paginate_by = 10
 
 
-class PostDetailView(ListView):
-  pass
+class PostDetailView(DetailView):
+  model = Post
+  slug_field = "id"
