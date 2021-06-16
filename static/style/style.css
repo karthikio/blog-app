@@ -9,30 +9,80 @@ body{
   background-color: #0d1117;
 }
 
+
+.hidden{
+  display: none;
+}
+
+
+/* margin top */
+.mt5{
+  margin-top: 5px;
+}
+
+.mt10{
+  margin-top: 10px;
+}
+
+.mt20{
+  margin-top: 20px;
+  
+}
+
+.mt30{
+  margin-top: 30px;
+  
+}
+
+.mt40{
+  margin-top: 40px;
+  
+}
+
+
+/* margin bottom */
+.mb10{
+  margin-bottom: 10px;
+}
+
+.mb20{
+  margin-bottom: 20px;
+}
+
+.mb30{
+  margin-bottom: 40px;
+}
+
+.mb40{
+  margin-bottom: 40px;
+}
+
+/* margin right */
 .mr5{
   margin-right: 5px;
 }
 
 .mr10{
-  margin-right: 5px;
+  margin-right: 10px;
   
 }
 
 .mr20{
-  margin-right: 5px;
+  margin-right: 20px;
   
 }
 
 .mr30{
-  margin-right: 5px;
+  margin-right: 30px;
   
 }
 
 .mr40{
-  margin-right: 5px;
+  margin-right: 40px;
   
 }
 
+/* margin left */
 .ml5{
   margin-left: 5px;
 }
@@ -47,9 +97,8 @@ body{
   
 }
 
-.mr30{
+.ml30{
   margin-left: 30px;
-  
 }
 
 .ml40{
@@ -98,10 +147,16 @@ body{
   align-items: center;
 }
 
-
-
 .text{
   color: #ccc;
+}
+
+.light{
+  color: #8d8d8d;
+}
+
+.thin{
+  font-weight: 300;
 }
 
 .text-mute{
@@ -115,7 +170,7 @@ body{
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
 }
 
 .post-container{
@@ -173,4 +228,120 @@ body{
 
 .content-text{
   font-size: 1rem;
+}
+
+/* profile */
+
+.profile-pic-container{
+  height: 200px;
+  width: 200px;
+  background-color: #1e1e1e;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0px 6px 0px 0px;
+}
+
+.profile-pic{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.profile-info-container{
+  flex: 1;
+}
+
+.profile-info{
+  padding: 30px 20px;
+  margin: 30px;
+}
+
+.profile-posts{
+  flex: 3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* pagination */
+
+.pagination-container{
+  min-width: 300px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.link-btn{
+  margin: 2px 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  display: inline-block;
+  border: 1px solid #0066db;
+  background-color: #13242ba9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #1b85ff;
+  padding: 1px 5px;
+}
+
+.link-btn:hover{
+  color: #008cff;
+  border: 1px solid #008cff;
+  background-color: #1d313aa9;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* loader */
+
+#loader-container{
+  height: 2px;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 11;
+}
+
+#loader{
+  height: 100%;
+  left: 0;
+  background: linear-gradient(to right,#20f8ff, #047ee2c4);
+  animation: loading 1s 1;
+}
+
+@keyframes loading{
+  from{
+    width: 0px;
+  }
+  to{
+    width: 100%;
+  }
 }

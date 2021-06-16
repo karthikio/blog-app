@@ -18,7 +18,7 @@
               
               {% endif %}
             </div>
-            <b class="text">{{post.author}}</b>
+            <b class="text"><a href="{% url 'profile-detail-view' post.author %}">{{post.author}}</a></b>
           </div>
           <div class="mr10">
             <p class="created text-mute ">{{post.created|date:'M d Y'}}</p>
@@ -36,5 +36,21 @@
       </div>
     </div>
     {% endfor %}
+    <div class="pagination-container">
+      {% if page_obj.has_previous %}
+      <a class="link-btn" href="?page=1">&laquo; first</a>
+      <a class="link-btn" href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+
+      <p class="text ml5 mr5">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </p>
+      
+      {% if page_obj.has_next %}
+      <a class="link-btn" href="?page={{ page_obj.next_page_number }}">next</a>
+      <a class="link-btn" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </div>
   </div>
-{% endblock %}
+  {% endblock %}

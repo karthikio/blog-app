@@ -16,7 +16,22 @@
   <link rel="stylesheet" href="{% static 'style/style.css' %}">
 </head>
 <body>
-  {% block posts %}
-  {% endblock %}
+  
+  <div id="loader-container">
+    <div id="loader"></div>
+  </div>
+
+  <div id="blocks" class="hidden">
+    {% block posts %}
+    {% endblock %}
+
+    {% block profile %}
+    {% endblock %}
+  </div>
+
+  
+
+  <script src="{% static 'script/app.js' %}"></script>
+
 </body>
 </html>
