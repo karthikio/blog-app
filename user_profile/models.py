@@ -1,6 +1,6 @@
 from django.db import models
-from django.db.models.base import Model
 from account.models import User
+from django.urls import reverse
 
 
 def upload_path(instance, filename):
@@ -16,3 +16,4 @@ class Profile(models.Model):
 
   def __str__(self):
     return self.user.username
+

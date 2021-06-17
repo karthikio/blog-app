@@ -22,7 +22,7 @@
           <p class="text mb20 mt10">{{ object.bio }}</p>
         {% endif %}
         {% if request.user == object.user %}
-          <a href="#" class="link-btn">Edit Profile</a>
+          <a href="{% url 'profile-update-view' request.user.id %}" class="link-btn">Edit Profile</a>
         {% endif %}
       </div>
     </div>
