@@ -15,7 +15,6 @@
             <div class="title-bar-pic-container">
               {% if post.author.profile.profile_pic.url %}
                 <img class="title-bar-pic" src="{{ post.author.profile.profile_pic.url }}" alt="profile pic">
-              
               {% endif %}
             </div>
             <b class="text"><a class="link-c" href="{% url 'profile-detail-view' post.author %}">{{post.author}}</a></b>

@@ -1,23 +1,22 @@
-<style>
-  /* nav bar */
-  .nav-container{
-    width: 100%;
-    height: 50px;
-    top: 0;
-    left: 0;
-    border-bottom: 1px solid #4d4d4d;
-  }
+<link rel="stylesheet" href="{% static 'style/style.css' %">
 
-
-</style>
 
 <div class="nav-container flex just-end all-center">
   <nav class="">
     <ul class="flex all-center mr10 ml10 ">
-      <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">Home</a></li>
+      <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'posts-list-view' %}">Home</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">News</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">Contact</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">About</a></li>
+      {% if request.user.is_authenticated %}
+      <li class="mt5 mb5 mr10 ml10">
+        <div class="title-bar-pic-container">
+          {% if request.user.profile.profile_pic.url %}
+            <img class="title-bar-pic" src="{{ request.user.profile.profile_pic.url }}" alt="">
+          {% endif %}
+        </div>
+      </li>
+      {% endif %}
     </ul>
   </nav>
 </div>

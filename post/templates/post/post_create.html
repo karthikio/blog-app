@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+{% block create_form %}
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.title }}
+    {{ form.image }}
+    {{ form.body }}
+    <input type="submit" value="Create">
+  </form>
+  <h1 class="text">{{form.errors}}</h1>
+  <h1 class="text">{{form.errors.body}}</h1>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import User
+from django.urls import reverse
 
 
 def upload_path(instance, filename):
@@ -14,6 +15,9 @@ class Post(models.Model):
 
   def __str__(self):
     return "{title}- {author}".format(title=self.title, author=self.author)
+
+  def get_absolute_url(self):
+    return reverse('posts-detail-view', kwargs={'pk': self.pk})
 
 
 
