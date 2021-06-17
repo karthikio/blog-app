@@ -4,6 +4,7 @@
   | {{ object }}'s Profile
 {% endblock %}
 
+
 {% block profile %}
 <div class="profile-container flex">
   <div class="profile-info-container flex just-center">
@@ -52,7 +53,7 @@
               <div class="content">
                 <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
                 {% if post.image %}
-                <img class="post-pic" src="{{ post.image.url }}" alt="{{post.title}} image">
+                <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
                 {% endif %}
                 <p class="text">
                   {{ post.body }}

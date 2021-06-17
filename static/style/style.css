@@ -124,7 +124,7 @@ body{
 }
 
 .just-end{
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .just-between{
@@ -137,6 +137,10 @@ body{
 
 .just-around{
   justify-content: space-around;
+}
+
+.text-center{
+  text-align: center;
 }
 
 .just-center{
@@ -157,8 +161,21 @@ body{
   color: #ccc;
 }
 
+.link-c:hover{
+  text-decoration: none;
+  color: #8d8d8d;
+}
+
+ul, li{
+  list-style: none;
+}
+
 .text{
   color: #ccc;
+}
+
+.bold{
+  font-weight: 600;
 }
 
 .light{
@@ -208,6 +225,7 @@ body{
   height: 30px;
   object-fit: cover;
 }
+
 
 .title{
   color: #0099ff;
@@ -270,10 +288,11 @@ body{
   flex: 3;
 }
 
-
-
-
-
+.profile-page-post{
+  height: 200px;
+  width: 100%;
+  margin: 4px;
+}
 
 
 
@@ -355,3 +374,10 @@ body{
     width: 100%;
   }
 }
+
+
+
+
+
+
+
