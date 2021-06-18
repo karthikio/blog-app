@@ -37,3 +37,35 @@ class UserAdminChangeForm(forms.ModelForm):
 
     def clean_password(self):
         return self.initial['password']
+
+
+# login form
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=80,
+        widget=forms.TextInput(
+            attrs= {
+                'class': 'form-input',
+                'placeholder': 'Username'
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs = {
+                'class': 'form-input',
+                # 'id': 'user-password',
+                'placeholder': 'Password'
+            }
+        )
+    )
+
+    def clean(self):
+      username = self.cleaned_data.get('username')
+      password = self.cleaned_data.get('password')
+      if not authenticate(username=username, password=password):
+        # raise forms.ValidationError('Invalid username and password.')
+        qs = User.objects.filter(username=username)
+        if not qs.exists():
+          raise forms.ValidationError('This is an invalid username, please pick another.')   
+        else:
+          raise forms.ValidationError('Incorrect password.')
