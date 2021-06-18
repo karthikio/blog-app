@@ -4,9 +4,12 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PostListView(ListView):
+class PostListView(ListView, LoginRequiredMixin):
+  login_url = '/login/'
+  redirect_field_name = 'login'
   model = Post
   paginate_by = 10
 
