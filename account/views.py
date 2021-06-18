@@ -1,6 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, FormView
+from .forms import RegisterForm, LoginForm
+from .models import User
 
-# Create your views here.
+
 class UserDeleteView(DeleteView):
   pass
+
+
+class RegisterView(FormView):
+  form_class = LoginForm
+  model = User
+
+
+class LoginView():
+  pass
+  
