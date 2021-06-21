@@ -7,9 +7,7 @@ from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PostListView(ListView, LoginRequiredMixin):
-  login_url = '/login/'
-  redirect_field_name = 'login'
+class PostListView(LoginRequiredMixin, ListView):
   model = Post
   paginate_by = 10
 
