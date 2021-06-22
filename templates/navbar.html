@@ -9,6 +9,7 @@
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">Contact</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">About</a></li>
       {% if request.user.is_authenticated %}
+      <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'logout-view' %}">Logout</a></li>
       <li class="mt5 mb5 mr10 ml10">
         <div class="title-bar-pic-container">
           {% if request.user.profile.profile_pic.url %}

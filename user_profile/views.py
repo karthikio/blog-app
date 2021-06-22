@@ -5,6 +5,7 @@ from account.models import User
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # class ProfileDetailView(DetailView):
 #   model = Profile
@@ -24,8 +25,14 @@ def ProfileDetailView(request, username):
 
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
   model = Profile
   fields = ('name', 'profile_pic', 'bio', 'privacy',)
   template_name = 'user_profile/update_profile.html'
   success_url = reverse_lazy('posts-list-view')
+
+  def test_func(self):
+    profile = self.get_object()
+    if self.request.user == profile.user:
+      return True
+    return False

@@ -59,8 +59,9 @@ def loginView(request, *args, **kwargs):
 
 
 def logoutView(request):
+  if not request.user.is_authenticated:
+    return redirect('login-view')
   username = request.user
   logout(request)
-  print(username)
   messages.success(request, f'You are now logged out {username}!')
   return redirect('login-view')

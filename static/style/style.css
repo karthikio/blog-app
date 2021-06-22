@@ -243,7 +243,7 @@ ul, li{
 
 .content{
   border-top: 1px #4d4d4d solid;
-  background-color: #161B22;
+  background-color: #161b22;
   color: #ccc;
   padding: 20px;
   line-height: 2rem;
@@ -290,7 +290,7 @@ ul, li{
 
 .profile-page-post{
   height: 200px;
-  width: 100%;
+  width: auto;
   margin: 4px;
 }
 
@@ -346,9 +346,21 @@ ul, li{
 
 
 
+/* message */
+.message-container{
+  padding: 20px;
+  border-radius: 5px;
+  height: 40px;
+  min-width: 200px;
+  z-index: 20;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  border: 1px solid #0066db;
+  background-color: #13242ba9;
+  color: #1b85ff;
 
-
-
+}
 
 
 

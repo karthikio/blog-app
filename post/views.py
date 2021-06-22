@@ -1,23 +1,26 @@
-import django
-from django.forms.forms import Form
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import (
+  ListView, DetailView, CreateView, UpdateView, DeleteView
+)
 from .models import Post
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 class PostListView(LoginRequiredMixin, ListView):
   model = Post
   paginate_by = 10
 
+  def get_queryset(self):
+    qs = Post.objects.all().order_by('-id')
+    return qs
+  
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
   model = Post
-  slug_field = "id"
 
 
-class PostFormView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
   model = Post
   fields = ('title', 'image', 'body',)
   template_name = 'post/post_create.html'
@@ -30,5 +33,24 @@ class PostFormView(CreateView):
     return super().form_invalid(form)
 
 
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+  model = Post
+  fields = ('title', 'image', 'body',)
+  template_name = 'post/post_update.html'
+
+  def test_func(self):
+    post = self.get_object()
+    if self.request.user == post.author:
+      return True
+    return False
 
 
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+  model = Post
+  success_url = '/'
+
+  def test_func(self):
+    post = self.get_object()
+    if self.request.user == post.author:
+      return True
+    return False

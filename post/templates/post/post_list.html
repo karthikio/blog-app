@@ -7,11 +7,17 @@
 {% endblock %}
 
 {% block posts %}
-  {% for message in messages %}
-    <p class="">
-        {{ message }}
-    </p>
-  {% endfor %}
+{% for message in messages %}
+<div class="message-container flex just-between all-center">
+  <div class="">
+    <p>{{ message }}</p>
+  </div>
+  <div class="cross m5 ml10">
+    <span>&#215;</span>
+  </div>
+</div>
+{% endfor %}
+
   <div class="posts-container">
 
     {% for post in object_list %}

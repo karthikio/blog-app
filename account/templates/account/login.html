@@ -1,12 +1,26 @@
-{% for message in messages %}
-  <p class="">
-      {{ message }}
-  </p>
-{% endfor %}
+{% extends 'base.html' %}
 
-<form method="POST">
+{% block title %}
+  | Login
+{% endblock %}
+
+
+{% block form %}
+  {% for message in messages %}
+  <div class="message-container flex just-between all-center">
+    <div class="">
+      <p>{{ message }}</p>
+    </div>
+    <div class="cross m5 ml10">
+      <h2>&#215;</h2>
+    </div>
+  </div>
+  {% endfor %}
+
+  <form method="POST">
   {% csrf_token %}
   {{ form }}
   <input type="submit" value="Login">
   {{form.errors}}
-</form>
+  </form>
+{% endblock %}
