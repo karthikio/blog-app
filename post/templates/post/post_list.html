@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
+
+
 {% block title %}
   | Posts
 {% endblock %}
 
 {% block posts %}
+  {% for message in messages %}
+    <p class="">
+        {{ message }}
+    </p>
+  {% endfor %}
   <div class="posts-container">
 
     {% for post in object_list %}

@@ -1,3 +1,9 @@
+{% for message in messages %}
+  <p class="">
+      {{ message }}
+  </p>
+{% endfor %}
+
 <form method="POST">
   {% csrf_token %}
   {{ form }}

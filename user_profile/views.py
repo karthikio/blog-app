@@ -1,14 +1,15 @@
-from django.db import models
 from django.shortcuts import render
 from .models import Profile
 from django.views.generic import UpdateView
 from account.models import User
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 # class ProfileDetailView(DetailView):
 #   model = Profile
 
+@login_required
 def ProfileDetailView(request, username):
   try:
     user = User.objects.get(username=username)

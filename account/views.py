@@ -1,28 +1,66 @@
-from src.settings import LOGIN_URL
 from django.shortcuts import redirect, render
-from django.views.generic import DeleteView, FormView, View
-from django.contrib.auth import logout
-from django.conf import settings
 from .forms import RegisterForm, LoginForm
 from .models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 
-class UserDeleteView(DeleteView):
-  pass
+def registerView(request):
+  form = RegisterForm()
+
+  if request.method == 'POST':
+    form = RegisterForm(request.POST)
+    if form.is_valid():
+      form.save()
+      username = form.cleaned_data.get('username')
+      messages.success(request, f'Account created for {username}.')
+      return redirect('login-view')
+  else:
+    form = RegisterForm()
+
+  context = {
+    'form': form,
+  }
+
+  return render(request, 'account/register.html', context)
 
 
-class RegisterView(FormView):
-  form_class = RegisterForm
-  model = User
 
 
-class LoginView(FormView):
-  form_class = LoginForm
-  template_name = 'account/login.html'
+
+def loginView(request, *args, **kwargs):
+  user = request.user
+
+  if user.is_authenticated:
+    return redirect('home_page')
+  form = LoginForm()
   
+  if request.method == 'POST':
+    form = LoginForm(request.POST)
+    if form.is_valid():
+      username = form.cleaned_data.get('username')
+      password = form.cleaned_data.get('password')
+      user = authenticate(username=username, password=password)
+      user_name = User.objects.get(username=username)
 
-class LogoutView(View):
-  def get(self, request):
-    logout(request)
-    return redirect(settings.LOGIN_URL)
+      if user!= None:
+        login(request, user)
+        messages.success(request, f'You are now logged in as {user_name.username}!')
+        return redirect('posts-list-view')
+  else:
+    form = LoginForm()
+  
+  context = {
+    'form': form,
+  }
+
+  return render(request, 'account/login.html', context)
+
+
+def logoutView(request):
+  username = request.user
+  logout(request)
+  print(username)
+  messages.success(request, f'You are now logged out {username}!')
+  return redirect('login-view')
