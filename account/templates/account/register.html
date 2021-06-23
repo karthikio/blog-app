@@ -16,12 +16,12 @@
       <div class="flex all-center flex-col juxt-between text-center">
         {% csrf_token %}
         {{form.email}}
-        <div class="p error"><ul>{{form.errors.email}}</ul></div>
+        <div class="error"><ul>{{form.errors.email}}</ul></div>
         {{form.username}}
-        <div class="p error">{{form.errors.username}}</div>
+        <div class="error">{{form.errors.username}}</div>
         {{form.password1}}
         {{form.password2}}
-        <div class="p error">{{form.errors.password2}}</div>
+        <div class="error">{{form.errors.password2}}</div>
         <input class="login-btn" type="submit" value="Sign Up">
       </div>
     </form>

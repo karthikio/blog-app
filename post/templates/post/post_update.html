@@ -2,13 +2,14 @@
 
 {% block create_form %}
 
-  <form method="POST">
+  <form novalidate method="POST">
     {% csrf_token %}
     {{ form.title }}
+    <p class="error">{{form.errors.title}}</p>
     {{ form.image }}
+    <p class="error">{{form.errors.image}}</p>
     {{ form.body }}
+    <p class="error">{{form.errors.body}}</p>
     <input type="submit" value="Create">
   </form>
-  <h1 class="text">{{form.errors}}</h1>
-  <h1 class="text">{{form.errors.body}}</h1>
 {% endblock %}

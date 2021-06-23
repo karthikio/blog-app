@@ -5,13 +5,31 @@
 {% endblock %}
 
 {% block form %}
-<form action="" method="POST">
-  {% csrf_token %}
-  {{ form.name }}
-  {{ form.profile_pic }}
-  {{ form.bio }}
-  {{ form.privacy }}
-  <input type="submit" value="Create">
-</form>
-<h1 class="text">{{form.errors}}</h1>
+  <div class="flex just-center all-center text-center">
+    <h2 class="text mt40">Update Profile</h2>
+  </div>
+  <div class="flex just-center all-center mt20">
+    <form novalidate method="POST">
+      <div class="flex flex-col just-between">
+        {% csrf_token %}
+        <div class="mb5 ml5 mr5 bt5">
+          {{ form.name }}
+          <p class="error">{{form.errors.name}}</p>
+        </div>
+        <div class="text mt10 ml10 mr5 mb10">
+          {{ form.profile_pic }}
+        </div>
+        <p class="error">{{form.errors.profile_pic}}</p>
+        <div class="mb5 ml5 mr5 bt5">
+          {{ form.bio }}
+          <p class="error">{{form.errors.bio}}</p>
+        </div>
+        <div class="mb10 ml5 mr5 bt10 ">
+          <p class="text include">Privacy: {{form.privacy}}</p>
+          <p class="text mb5 mr5">{{form.errors.privacy}}</p>
+        </div>
+        <input class="login-btn" type="submit" value="Create">
+      </div>
+    </form>
+  </div>
 {% endblock %}

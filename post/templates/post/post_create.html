@@ -6,13 +6,14 @@
 
 {% block form %}
 
-  <form action="" method="POST">
+  <form novalidate method="POST">
     {% csrf_token %}
     {{ form.title }}
+    {{form.errors.title}}
     {{ form.image }}
+    {{form.errors.image}}
     {{ form.body }}
-    <input type="submit" value="Create">
+    {{form.errors.body}}
+    <input  type="submit" value="Create">
   </form>
-  <h1 class="text">{{form.errors}}</h1>
-  <h1 class="text">{{form.errors.body}}</h1>
 {% endblock %}

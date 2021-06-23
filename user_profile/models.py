@@ -10,8 +10,8 @@ def upload_path(instance, filename):
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   profile_pic = models.ImageField(default='default.png', upload_to=upload_path)
-  name = models.CharField(max_length=255)
-  bio = models.TextField(max_length=500)
+  name = models.CharField(max_length=255, null=True, blank=True)
+  bio = models.TextField(max_length=500, blank=True, null=True)
   privacy = models.BooleanField(default=False)
 
   def __str__(self):

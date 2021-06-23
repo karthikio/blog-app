@@ -112,6 +112,13 @@ body{
   
 }
 
+.p10{
+  padding: 10px;
+}
+
+.inline{
+  display: inline-block;
+}
 
 .flex{
   display: flex;
@@ -176,6 +183,11 @@ ul, li{
   list-style: none;
 }
 
+a{
+  text-decoration: none;
+  color: #0099ff;
+}
+
 .text{
   color: #ccc;
 }
@@ -188,7 +200,7 @@ ul, li{
   color: #8d8d8d;
 }
 
-.error{
+.error, .errorlist{
   color: #ff2a2a;
 }
 
@@ -219,6 +231,7 @@ ul, li{
   margin: 20px auto;
   z-index: 10;
   overflow: hidden;
+  word-wrap: break-word;
 }
 
 .title-bar-pic-container{
@@ -257,6 +270,7 @@ ul, li{
   color: #ccc;
   padding: 20px;
   line-height: 2rem;
+  word-wrap: break-word;
 }
 
 .post-pic{
@@ -287,6 +301,7 @@ ul, li{
 
 .profile-info-container{
   flex: 1;
+  max-width: 400px;
 }
 
 .profile-info{
@@ -296,6 +311,7 @@ ul, li{
 
 .profile-posts{
   flex: 3;
+  max-width: 900px;
 }
 
 .profile-page-post{
@@ -408,8 +424,8 @@ ul, li{
   }
 }
 
-/* login form */
-.form-input{
+/* login form and other forms */
+.form-input, #id_name{
   height: 30px;
   width: 300px;
   outline: none;
@@ -421,7 +437,7 @@ ul, li{
   padding: 10px;
 }
 
-.form-input:focus{
+.form-input:focus, #id_name:focus, #id_bio:focus{
   border: 2px solid #0099ffd0;  
 }
 
@@ -442,3 +458,31 @@ ul, li{
   background-color: #1d313aa9;
 }
 
+/* text area */
+#id_bio{
+  height: 300px;
+  width: 500px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #4d4d4d;
+  margin: 5px;
+  color: #ccc;
+  background-color: #00000000;
+  padding: 10px;
+}
+
+#id_profile_pic::-webkit-file-upload-button{
+  border-radius: 2px;
+  border: 1px solid #0066db;
+  background-color: #13242ba9;
+  color: #1b85ff;
+  cursor: pointer;
+}
+
+#id_profile_pic{
+  outline: none;
+}
+
+#id_name::placeholder{
+  content: 'lkasdfl;';
+}
