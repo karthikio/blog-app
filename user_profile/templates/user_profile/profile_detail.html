@@ -61,6 +61,38 @@
         </div>
       {% endfor %}
     </div>
+    {% elif object.privacy == False %}
+      <div class="posts-container">
+        {% for post in object.user.post_set.all %}
+          <div class="post-container">
+            <div class="post">
+              <div class="title-bar flex all-center just-between">
+                <div class="flex all-center just-between">
+                  <div class="title-bar-pic-container">
+                    {% if post.author.profile.profile_pic.url %}
+                    <img class="title-bar-pic" src="{{ post.author.profile.profile_pic.url }}" alt="profile pic">
+                    
+                    {% endif %}
+                  </div>
+                  <b class="text"><a class="link-c" href="{% url 'profile-detail-view' post.author %}">{{post.author}}</a></b>
+                </div>
+                <div class="mr10">
+                  <p class="created text-mute ">{{post.created|date:'M d Y'}}</p>
+                </div>
+              </div>
+              <div class="content">
+                <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
+                {% if post.image %}
+                <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
+                {% endif %}
+                <p class="text">
+                  {{ post.body }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     {% else %}
       <h1 class="text">private account</h1>
     {% endif %}

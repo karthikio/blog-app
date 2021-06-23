@@ -23,11 +23,10 @@ def ProfileDetailView(request, username):
 
 
 
-class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
   model = Profile
   fields = ('name', 'profile_pic', 'bio', 'privacy',)
   template_name = 'user_profile/update_profile.html'
-  success_url = reverse_lazy('posts-list-view')
 
   def test_func(self):
     profile = self.get_object()
