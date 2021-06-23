@@ -5,9 +5,44 @@
 {% endblock %}
 
 {% block form %}
-  <form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Delete</button>
-  </form>
+  <div class="flex just-center flex-col all-center text-center mb20 mt40 mr10 ml10">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <p class="text mb10 mt10">Are you sure about deleting, "{{object.title}}"?</p>
+      <button class="login-btn" type="submit">Delete</button>
+    </form>
+  </div>
+
+    <div class="post-container">
+      <div class="post">
+        <div class="title-bar flex all-center just-between">
+          <div class="flex all-center just-between">
+            <div class="title-bar-pic-container">
+              {% if object.author.profile.profile_pic.url %}
+                  <img class="title-bar-pic" src="{{ object.author.profile.profile_pic.url }}" alt="profile pic">
+              {% endif %}
+            </div>
+            <b class="text"><a class="link-c" href="{% url 'profile-detail-view' object.author %}">{{object.author}}</a></b>
+          </div>
+          <div class="mr10">
+            <p class="created text-mute ">{{object.created|date:'M d Y'}}</p>
+          </div>
+          
+        </div>
+        <div class="content">
+          <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' object.id %}">{{object.title}}</a></h2>
+          {% if object.image %}
+            <a target="_blank" href="{{ object.image.url }}">
+              <img class="post-pic" src="{{ object.image.url }}" alt="{{object.title}} image">
+            </a>
+          {% endif %}
+          <p class="text">
+            {{ object.body }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

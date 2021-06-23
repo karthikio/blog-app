@@ -1,15 +1,27 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
-{% block create_form %}
-
-  <form novalidate method="POST">
-    {% csrf_token %}
-    {{ form.title }}
-    <p class="error">{{form.errors.title}}</p>
-    {{ form.image }}
-    <p class="error">{{form.errors.image}}</p>
-    {{ form.body }}
-    <p class="error">{{form.errors.body}}</p>
-    <input type="submit" value="Create">
-  </form>
+{% block form %}
+  <div class="flex just-center flex-col all-center mt20">
+    <h1 class="text mt10 mb20">Update {{object.title}}</h1>
+    <form novalidate method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="flex flex-col">
+        <div class="mt5 mr5 ml5 mb10">
+          {{ form.title }}
+          <p class="error">{{form.errors.title}}</p>
+        </div>
+        <div class="mt5 mr5 ml10 mb10 text">
+          {{ form.image }}
+          <p class="error">{{form.errors.image}}</p>
+        </div>
+        <div class="mt5 mr5 ml5 mb10">
+          {{ form.body }}
+          <p class="error">{{form.errors.body}}</p>
+        </div>
+        <div class="ml5">
+          <input class="login-btn" type="submit" value="Update">
+        </div>
+      </div>
+    </form> 
+  </div>
 {% endblock %}

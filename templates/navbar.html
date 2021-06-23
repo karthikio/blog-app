@@ -13,7 +13,9 @@
       <li class="mt5 mb5 mr10 ml10">
         <div class="title-bar-pic-container">
           {% if request.user.profile.profile_pic.url %}
-            <img class="title-bar-pic" src="{{ request.user.profile.profile_pic.url }}" alt="">
+            <a href="{% url 'profile-detail-view' request.user.username %}">
+              <img class="title-bar-pic" src="{{ request.user.profile.profile_pic.url }}" alt="">
+            </a>
           {% endif %}
         </div>
       </li>
