@@ -8,11 +8,11 @@
 
 {% block posts %}
 {% for message in messages %}
-<div class="message-container flex just-between all-center">
+<div class="message-container info-msg flex just-between all-center">
   <div class="">
     <p>{{ message }}</p>
   </div>
-  <div class="cross m5 ml10">
+  <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
     <span>&#215;</span>
   </div>
 </div>

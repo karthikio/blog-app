@@ -1,9 +1,32 @@
+{% extends 'base.html' %}
+
 {% block title %}
-  | Sign Up
+| Sign Up
 {% endblock %}
 
-<form action="" method="POST">
-  {% csrf_token %}
-  {{form}}
-  <input type="submit" value="Register">
-</form>
+{% block form %}
+  <div class="flex just-between all-center flex-col text-center mt40">
+    <h1 class="text mt10">
+      Blog App
+    </h1>
+    <h3 class="light ml5 mr5 mb20 mt5">
+      Sign up to view tech blogs!
+    </h3>
+    <form novalidate action="" method="POST">
+      <div class="flex all-center flex-col juxt-between text-center">
+        {% csrf_token %}
+        {{form.email}}
+        <div class="p error"><ul>{{form.errors.email}}</ul></div>
+        {{form.username}}
+        <div class="p error">{{form.errors.username}}</div>
+        {{form.password1}}
+        {{form.password2}}
+        <div class="p error">{{form.errors.password2}}</div>
+        <input class="login-btn" type="submit" value="Sign Up">
+      </div>
+    </form>
+    <div class="mt20 ml5 mr5 mb10 flex text-center all-center just-center">
+      <p class="text">Have an account? <a class="link-b" href="{% url 'login-view' %}">Log In</a></p>
+    </div>
+  </div>
+{% endblock %}

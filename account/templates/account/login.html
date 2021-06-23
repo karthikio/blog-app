@@ -7,20 +7,35 @@
 
 {% block form %}
   {% for message in messages %}
-  <div class="message-container flex just-between all-center">
+  <div class="message-container info-msg flex just-between all-center">
     <div class="">
       <p>{{ message }}</p>
     </div>
-    <div class="cross m5 ml10">
-      <h2>&#215;</h2>
+    <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
+      <span>&#215;</span>
     </div>
   </div>
   {% endfor %}
 
-  <form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Login">
-  {{form.errors}}
-  </form>
+  <div class="flex flex-col all-center text-center mt40 mb20">
+    <h1 class="text mt10">
+      Blog App
+    </h1>
+    <form novalidate method="POST">
+      <div class="mt20 ml20 mr20 mb20 flex flex-col all-center text-center">
+        {% csrf_token %}
+        {{ form.username }}
+        {{ form.password }}
+        <input type="submit" class="login-btn" value="Log In">
+      </div>
+    </form>
+    <div class="mt10 ml5 mr5 mb10 flex text-center all-center just-center">
+      <p class="text">Don't have an account? <a class="link-b" href="{% url 'register-view' %}">Sign Up</a></p>
+    </div>
+    {% if form.non_field_errors %}
+      <div class="message-container flex just-between all-center error-msg">
+        <p>{{form.non_field_errors}}</p>
+      </div>
+    {% endif %}
+  </div>
 {% endblock %}

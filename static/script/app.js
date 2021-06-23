@@ -1,8 +1,6 @@
 let loaderContainer = document.getElementById('loader-container');
 let loader = document.getElementById('loader');
 let blocks = document.querySelector('#blocks');
-let cross = document.getElementsByClassName('cross')
-let messageContainer = document.querySelector('.message-container')
 
 
 window.addEventListener('load', () => {
@@ -16,8 +14,8 @@ window.addEventListener('load', () => {
   
 })
 
-console.log(messageContainer)
 
-cross.addEventListener('click', () => {
-  messageContainer.display = 'none';
-})
+fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=API_KEY')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err))

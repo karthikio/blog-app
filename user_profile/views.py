@@ -4,13 +4,11 @@ from django.views.generic import UpdateView
 from account.models import User
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # class ProfileDetailView(DetailView):
 #   model = Profile
 
-@login_required
 def ProfileDetailView(request, username):
   try:
     user = User.objects.get(username=username)
