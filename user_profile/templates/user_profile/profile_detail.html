@@ -6,12 +6,14 @@
 
 
 {% block profile %}
-<div class="profile-container flex">
+<div class="profile-container flex just-center mt40 mb20 mr5 ml5">
   <div class="profile-info-container flex just-center">
     <div class="profile-info flex flex-col ">
 
       <div class="profile-pic-container">
-        <img class="profile-pic" src="{{ object.profile_pic.url }}" alt="">
+        <a href="{{ object.profile_pic.url }}" target="_blank">
+          <img class="profile-pic" src="{{ object.profile_pic.url }}" alt="{{object.name}}'s profile pic">
+        </a>
       </div>
       <div class="profile-text mt20 mb20 mr5 ml5">
         {% if object.name %}
@@ -21,7 +23,14 @@
         {% if object.bio %}
           <p class="text mb20 mt10">{{ object.bio }}</p>
         {% endif %}
-        {% if request.user == object.user %}
+        {% if object.user.joined %}
+          <p class="light mb10 ">Joined, {{object.user.joined|date:'M d Y'}}</p>
+        {% endif %}
+        {% if object.privacy == True  and request.user != object.user %}
+          <h1 class="text mt50">private account</h1>
+        {% endif %}
+        
+        {% if request.user == object.user%}
           <a href="{% url 'profile-update-view' request.user.id %}" class="link-btn">Edit Profile</a>
         {% endif %}
       </div>
@@ -29,6 +38,12 @@
   </div>
 
   <div class="profile-posts">
+    {% if not object.user.post_set.all %}
+    <div class="flex flex-col all-center mt40 text-center">
+        <h2 class="text">No posts from this author!</h2>
+        <svg class='empty-svg' aria-hidden="true" focusable="false" data-prefix="fas" data-icon="box-open" class="svg-inline--fa fa-box-open fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64 69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z"></path></svg>
+      </div>
+    {% endif %}
     {% if object.privacy == True and request.user == object.user %}
     <div class="posts-container">
       {% for post in object.user.post_set.all %}
@@ -51,7 +66,9 @@
             <div class="content">
               <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
               {% if post.image %}
-              <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
+              <a href="{{ post.image.url }}" target="_blank">
+                <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
+              </a>
               {% endif %}
               <p class="text">
                 {{ post.body }}
@@ -71,7 +88,6 @@
                   <div class="title-bar-pic-container">
                     {% if post.author.profile.profile_pic.url %}
                     <img class="title-bar-pic" src="{{ post.author.profile.profile_pic.url }}" alt="profile pic">
-                    
                     {% endif %}
                   </div>
                   <b class="text"><a class="link-c" href="{% url 'profile-detail-view' post.author %}">{{post.author}}</a></b>
@@ -83,7 +99,9 @@
               <div class="content">
                 <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
                 {% if post.image %}
-                <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
+                  <a href="{{ post.image.url }}" target="_blank">
+                    <img class="profile-page-post" src="{{ post.image.url }}" alt="{{post.title}} image">
+                  </a>
                 {% endif %}
                 <p class="text">
                   {{ post.body }}
@@ -94,9 +112,12 @@
         {% endfor %}
       </div>
     {% else %}
-      <h1 class="text">private account</h1>
+      <div class="mt40 flex flex-col text-center all-center just-center">
+        <svg class="private-svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-shield" class="svg-inline--fa fa-user-shield fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M622.3 271.1l-115.2-45c-4.1-1.6-12.6-3.7-22.2 0l-115.2 45c-10.7 4.2-17.7 14-17.7 24.9 0 111.6 68.7 188.8 132.9 213.9 9.6 3.7 18 1.6 22.2 0C558.4 489.9 640 420.5 640 296c0-10.9-7-20.7-17.7-24.9zM496 462.4V273.3l95.5 37.3c-5.6 87.1-60.9 135.4-95.5 151.8zM224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm96 40c0-2.5.8-4.8 1.1-7.2-2.5-.1-4.9-.8-7.5-.8h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c6.8 0 13.3-1.5 19.2-4-54-42.9-99.2-116.7-99.2-212z"></path></svg>
+      <p class="light">You are not permitted to view this authors posts!</p>
+      </div>
     {% endif %}
-    </div>
+  </div>
 </div>
   
 {% endblock %}

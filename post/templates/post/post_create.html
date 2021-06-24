@@ -5,15 +5,28 @@
 {% endblock %}
 
 {% block form %}
-
-  <form novalidate method="POST">
-    {% csrf_token %}
-    {{ form.title }}
-    {{form.errors.title}}
-    {{ form.image }}
-    {{form.errors.image}}
-    {{ form.body }}
-    {{form.errors.body}}
-    <input  type="submit" value="Create">
-  </form>
+  <div class="flex all-center flex-col just-center mt10 mb20 mr5 ml5">
+    <h2 class="text">Create New Post</h2>
+    <form novalidate method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="flex just-between flex-col">
+        <div class="ml5 mt10 mb5 mr5">
+          <p class="light">Title</p>
+          {{ form.title }}
+          {{form.errors.title}}
+        </div>
+        <div class="ml10 mt10 mb5 mr5">
+          <p class="light">Image</p>
+          <p class="text">{{ form.image }}</p>
+          {{form.errors.image}}
+        </div>
+        <div class="ml5 mt10 mb5 mr5">
+          <p class="light">Body</p>
+          {{ form.body }}
+          {{form.errors.body}}
+        </div>
+        <input class="login-btn" type="submit" value="Create">
+      </div>
+    </form>
+  </div>
 {% endblock %}

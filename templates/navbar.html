@@ -7,9 +7,16 @@
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'posts-list-view' %}">Home</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">News</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">Contact</a></li>
-      <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="#">About</a></li>
       {% if request.user.is_authenticated %}
-      <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'logout-view' %}">Logout</a></li>
+      <div class="drop-down">
+        <p class="bold link-c mt5 mb5 mr10 ml10">Menu</p>
+        <div class="drop-down-content">
+          <li><a class=" text" href="{% url 'posts-create-view' %}">Create</a></li>
+          <li><a class=" text" href="{% url 'profile-detail-view' request.user.username %}">Profile</a></li>
+          <li><a class=" text" href="{% url 'logout-view' %}">Logout</a></li>
+        </div>
+      </div>
+      
       <li class="mt5 mb5 mr10 ml10">
         <div class="title-bar-pic-container">
           {% if request.user.profile.profile_pic.url %}

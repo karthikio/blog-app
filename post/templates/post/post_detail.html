@@ -4,14 +4,38 @@
   | {{object.title}}
 {% endblock %}
 
+{% block popup %}
+  {% for message in messages %}
+  <div class="message-container info-msg flex just-between all-center">
+    <div class="">
+      <p>{{ message }}</p>
+    </div>
+    <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
+      <span>&#215;</span>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
+
 {% block post %}
+  <div class="flex just-start all-center ">
+    {% if request.user == object.author %}
+      <div class="border mt20 mb 10 ml20 mr10">
+        <a href="{% url 'posts-update-view' object.id %}" class="link-b ">Update post</a>
+        <div class="border-bottom mt10 mb10"></div>
+        <a href="{% url 'posts-delete-view' object.id %}" class="link-b">Delete post</a>
+        <div class="border-bottom mt10 mb10"></div>
+        <p class="link-b">{% url 'posts-detail-view' object.id %}</p>
+      </div>
+    {% endif %}
+
     <div class="post-container">
       <div class="post">
         <div class="title-bar flex all-center just-between">
           <div class="flex all-center just-between">
             <div class="title-bar-pic-container">
               {% if object.author.profile.profile_pic.url %}
-                  <img class="title-bar-pic" src="{{ object.author.profile.profile_pic.url }}" alt="profile pic">
+                <img class="title-bar-pic" src="{{ object.author.profile.profile_pic.url }}" alt="profile pic">
               {% endif %}
             </div>
             <b class="text"><a class="link-c" href="{% url 'profile-detail-view' object.author %}">{{object.author}}</a></b>
@@ -19,7 +43,6 @@
           <div class="mr10">
             <p class="created text-mute ">{{object.created|date:'M d Y'}}</p>
           </div>
-          
         </div>
         <div class="content">
           <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' object.id %}">{{object.title}}</a></h2>
@@ -35,12 +58,4 @@
       </div>
     </div>
   </div>
-
-
-  <div class="message-container info-msg flex just-between all-center">
-    <a href="{% url 'posts-update-view' object.id %}" class="link-b">Update</a>
-    <p>|</p>
-    <a href="{% url 'posts-delete-view' object.id %}" class="link-b">Delete</a>
-  </div>
-  
 {% endblock %}

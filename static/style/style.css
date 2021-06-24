@@ -19,6 +19,11 @@ body{
   padding: 8px 10px;
   border-radius: 4px;
   width: 300px;
+  min-height: 100px;
+}
+
+.border-bottom{
+  border-bottom: 1px solid #4d4d4d;
 }
 
 /* margin top */
@@ -329,6 +334,40 @@ a{
   border-bottom: 1px solid #4d4d4d;
 }
 
+.drop-down{
+  cursor: pointer;
+}
+
+.drop-down:hover .drop-down-content{
+  display: block;
+}
+
+.drop-down-content{
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  max-height: 160px;
+  border: 1px solid #4d4d4d;
+  background-color: #161b22;
+  border-radius: 2px;
+  display: none;
+}
+
+.drop-down-content li{
+  width: 100%;
+  height: 28px;
+  padding: 5px;
+}
+
+.drop-down-content a{
+  margin: 10px 10px;
+  color: #fff;
+}
+
+.drop-down-content li:hover{
+  background-color: #0066db;
+}
+
 
 /* pagination */
 
@@ -368,13 +407,8 @@ a{
 /* message */
 .message-container{
   padding: 20px;
-  border-radius: 5px;
   height: 40px;
-  min-width: 200px;
-  z-index: 20;
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
+  min-width: 100%;
 }
 
 .cross{
@@ -382,13 +416,15 @@ a{
 }
 
 .error-msg{
-  border: 1px solid #ff2a2a;
+  border-top: 1px solid #ff2a2a;
+  border-bottom: 1px solid #ff2a2a;
   background-color: #2b1313a9;
   color: #ff1b1b;
 }
 
 .info-msg{
-  border: 1px solid #0066db;
+  border-bottom: 1px solid #0066db;
+  border-top: 1px solid #0066db;
   background-color: #13242ba9;
   color: #1b85ff;
 }
@@ -412,7 +448,7 @@ a{
   height: 100%;
   left: 0;
   background: linear-gradient(to right,#20f8ff, #047ee2c4);
-  animation: loading 1s 1;
+  animation: loading 2s 1;
 }
 
 @keyframes loading{
@@ -481,4 +517,25 @@ a{
 
 #id_profile_pic{
   outline: none;
+}
+
+
+/* svg */
+.private-svg{
+  color: #5e5e5eb2;
+  height: 400px;
+  width: 400px;
+}
+
+.create-svg{
+  color: #fff;
+  height: 80px;
+  width: 80px;
+}
+
+.empty-svg{
+  color: #c2c2c2e0;
+  height: 350px;
+  width: 350px;
+
 }

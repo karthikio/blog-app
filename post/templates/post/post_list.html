@@ -6,17 +6,20 @@
   | Posts
 {% endblock %}
 
+{% block popup %}
+  {% for message in messages %}
+  <div class="message-container info-msg flex just-between all-center">
+    <div class="">
+      <p>{{ message }}</p>
+    </div>
+    <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
+      <span>&#215;</span>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
+
 {% block posts %}
-{% for message in messages %}
-<div class="message-container info-msg flex just-between all-center">
-  <div class="">
-    <p>{{ message }}</p>
-  </div>
-  <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
-    <span>&#215;</span>
-  </div>
-</div>
-{% endfor %}
 
   <div class="posts-container">
 
@@ -39,7 +42,9 @@
         <div class="content">
           <h2 class="title"><a class="link-b" href="{% url 'posts-detail-view' post.id %}">{{post.title}}</a></h2>
           {% if post.image %}
-            <img class="post-pic" src="{{ post.image.url }}" alt="{{post.title}} image">
+            <a href="{{ post.image.url }}" target="_blank">
+              <img class="post-pic" src="{{ post.image.url }}" alt="{{post.title}} image">
+            </a>
           {% endif %}
           <p class="text">
             {{ post.body }}

@@ -42,6 +42,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username = models.CharField(verbose_name='Username', max_length=80, unique=True)
     email = models.EmailField(verbose_name='Email Id', max_length=255, unique=True)
+    joined = models.DateTimeField(null=True, blank=True, auto_now_add=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)

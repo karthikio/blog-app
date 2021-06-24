@@ -3,8 +3,10 @@ from django.views.generic import (
   ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from .models import Post
+from user_profile.models import Profile
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class PostListView(LoginRequiredMixin, ListView):
@@ -12,18 +14,26 @@ class PostListView(LoginRequiredMixin, ListView):
   paginate_by = 10
 
   def get_queryset(self):
-    qs = Post.objects.all().order_by('-id')
+    # filter with private account users
+    private_users = Profile.objects.filter(privacy=True)
+    if private_users:
+      for i in private_users:
+          qs = Post.objects.exclude(author=i.user).order_by('-id')
+    else:
+      qs = Post.objects.all().order_by('-id')
     return qs
+
   
 
 class PostDetailView(LoginRequiredMixin, DetailView):
   model = Post
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin,CreateView):
   model = Post
   fields = ('title', 'image', 'body',)
   template_name = 'post/post_create.html'
+  success_message = 'New post created!'
   
   def form_valid(self, form):
     form.instance.author = self.request.user
@@ -33,10 +43,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     return super().form_invalid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin, SuccessMessageMixin,UserPassesTestMixin, UpdateView):
   model = Post
   fields = ('title', 'image', 'body',)
   template_name = 'post/post_update.html'
+  success_message = "Post update success!"
+
 
   def test_func(self):
     post = self.get_object()

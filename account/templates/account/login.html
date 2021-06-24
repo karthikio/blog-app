@@ -4,8 +4,7 @@
   | Login
 {% endblock %}
 
-
-{% block form %}
+{% block popup %}
   {% for message in messages %}
   <div class="message-container info-msg flex just-between all-center">
     <div class="">
@@ -16,6 +15,21 @@
     </div>
   </div>
   {% endfor %}
+
+  {% if form.non_field_errors %}
+      <div class="message-container flex just-between all-center error-msg">
+        <div class="">
+          <p>{{form.non_field_errors}}</p>
+        </div>
+        <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
+          <span>&#215;</span>
+        </div>
+      </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block form %}
 
   <div class="flex flex-col all-center text-center mt40 mb20">
     <h1 class="text mt10">
@@ -32,10 +46,6 @@
     <div class="mt10 ml5 mr5 mb10 flex text-center all-center just-center">
       <p class="text">Don't have an account? <a class="link-b" href="{% url 'register-view' %}">Sign Up</a></p>
     </div>
-    {% if form.non_field_errors %}
-      <div class="message-container flex just-between all-center error-msg">
-        <p>{{form.non_field_errors}}</p>
-      </div>
-    {% endif %}
+    
   </div>
 {% endblock %}
