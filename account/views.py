@@ -65,3 +65,7 @@ def logoutView(request):
   logout(request)
   messages.success(request, f'You are now logged out {username}!')
   return redirect('login-view')
+
+
+def contactView(request):
+  return render(request, 'account/contact.html', {})

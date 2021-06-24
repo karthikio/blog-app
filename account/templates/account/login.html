@@ -35,8 +35,9 @@
     <h1 class="text mt10">
       Blog App
     </h1>
+    <h2 class="light mt5 mb10">< Login to continue /></h2>
     <form novalidate method="POST">
-      <div class="mt20 ml20 mr20 mb20 flex flex-col all-center text-center">
+      <div class="mt10 ml20 mr20 mb20 flex flex-col all-center text-center">
         {% csrf_token %}
         {{ form.username }}
         {{ form.password }}

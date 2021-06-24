@@ -10,8 +10,13 @@
       {% csrf_token %}
       {{ form }}
       <p class="text mb10 mt10">Are you sure about deleting, "{{object.title}}"?</p>
-      <button class="login-btn" type="submit">Delete</button>
+      <button class="red-btn" type="submit">Delete</button>
     </form>
+    <a  href="{% url 'posts-detail-view' object.id %}">
+      <button class="login-btn">
+        Cancel
+      </button>
+    </a>
   </div>
 
     <div class="post-container">
