@@ -33,7 +33,7 @@ def loginView(request, *args, **kwargs):
   user = request.user
 
   if user.is_authenticated:
-    return redirect('home_page')
+    return redirect('posts-list-view')
   form = LoginForm()
   
   if request.method == 'POST':

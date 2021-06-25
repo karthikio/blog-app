@@ -35,15 +35,16 @@
     <h1 class="text mt10">
       Blog App
     </h1>
-    <h2 class="light mt5 mb10">< Login to continue /></h2>
+    <h2 class="light mt5 mb10">< Login to visit home /></h2>
     <form novalidate method="POST">
-      <div class="mt10 ml20 mr20 mb20 flex flex-col all-center text-center">
+      <div class="mt10 ml20 mr20 mb10 flex flex-col all-center text-center">
         {% csrf_token %}
         {{ form.username }}
         {{ form.password }}
         <input type="submit" class="login-btn" value="Log In">
       </div>
     </form>
+    <a target="_blank" href="{% url 'password_reset' %}" class="link-b mb20">Forgot password?</a>
     <div class="mt10 ml5 mr5 mb10 flex text-center all-center just-center">
       <p class="text">Don't have an account? <a class="link-b" href="{% url 'register-view' %}">Sign Up</a></p>
     </div>

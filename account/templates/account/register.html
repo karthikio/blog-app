@@ -4,6 +4,17 @@
 | Sign Up
 {% endblock %}
 
+{% block popup %}
+  <div class="message-container info-msg flex just-between all-center">
+    <div class="">
+      <p>Provide a valid email id!</p>
+    </div>
+    <div onclick="this.parentElement.style.display='none';" class="cross m5 ml10">
+      <span>&#215;</span>
+    </div>
+  </div>
+{% endblock %}
+
 {% block form %}
   <div class="flex just-between all-center flex-col text-center mt40">
     <h1 class="text mt10">
