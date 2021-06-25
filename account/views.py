@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from .forms import RegisterForm, LoginForm
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from django.views.generic import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def registerView(request):
@@ -24,9 +26,6 @@ def registerView(request):
   }
 
   return render(request, 'account/register.html', context)
-
-
-
 
 
 def loginView(request, *args, **kwargs):
@@ -69,3 +68,14 @@ def logoutView(request):
 
 def contactView(request):
   return render(request, 'account/contact.html', {})
+
+
+class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+  model = User
+  success_url = reverse_lazy('logout-view')
+
+  def test_func(self):
+    user = self.get_object()
+    if self.request.user == user:
+      return True
+    return False

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import loginView, logoutView, registerView, contactView
+from .views import loginView, logoutView, registerView, contactView, UserDeleteView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -7,6 +7,7 @@ urlpatterns = [
   path('login/', loginView, name='login-view'),
   path('logout/', logoutView, name='logout-view'),
   path('contact/', contactView, name='contact-view'),
+  path('deactivate/<int:pk>/', UserDeleteView.as_view(), name='user-delete-view'),
 
   # password reset url patterns
   path('password-reset/', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html', html_email_template_name='account/password_reset_email.html'), name='password_reset'),

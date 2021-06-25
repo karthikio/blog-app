@@ -29,7 +29,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
   model = Post
 
 
-class PostCreateView(LoginRequiredMixin, SuccessMessageMixin,CreateView):
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
   model = Post
   fields = ('title', 'image', 'body',)
   template_name = 'post/post_create.html'

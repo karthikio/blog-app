@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block form %}
+  <div class="flex all-center just-center mt40 mb20 mr10 ml10">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="flex flex-col mt40 just-center">
+        <h2 class="text mt40 mb5">Deactivate Account</h2>
+        <p class="light mt5 mb5">All your posts and data will be deleted permanently</p>
+        <p class="light mt5 mb20">See you soon, {{object.username}}!</p>
+        <input class="login-btn mt5 mb5" type="submit" value="Deactivate">
+      </div>
+    </form>
+  </div>
+{% endblock %}

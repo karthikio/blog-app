@@ -13,6 +13,7 @@
         <div class="drop-down-content">
           <li><a class=" text" href="{% url 'posts-create-view' %}">New post</a></li>
           <li><a class=" text" href="{% url 'profile-detail-view' request.user.username %}">Profile</a></li>
+          <li><a class=" text" href="{% url 'user-delete-view' request.user.id %}">Deactivate</a></li>
           <li><a class=" text" href="{% url 'logout-view' %}">Logout</a></li>
         </div>
       </div>
