@@ -575,3 +575,10 @@ a{
   width: 20px;
   color: #008cff;
 }
+
+.logo-svg{
+  height: 26px;
+  width: 26px;
+  color: #ccc;
+  margin: auto;
+}
