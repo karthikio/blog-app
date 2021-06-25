@@ -461,6 +461,14 @@ a{
 }
 
 /* login form and other forms */
+.no-input{
+  border: none;
+  outline: none;
+  color: #0099ff;
+  background-color: #00000000;
+  cursor: pointer;
+}
+
 .form-input, #id_name, #id_title{
   height: 30px;
   width: 300px;
