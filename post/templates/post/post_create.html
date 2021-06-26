@@ -11,18 +11,15 @@
       {% csrf_token %}
       <div class="flex just-between flex-col">
         <div class="ml5 mt10 mb5 mr5">
-          <p class="light">Title</p>
-          {{ form.title }}
+          <input placeholder="Title" type="text" name="title" maxlength="255" required="" id="id_title">
           {{form.errors.title}}
         </div>
         <div class="ml10 mt10 mb5 mr5">
-          <p class="light">Image</p>
           <p class="text">{{ form.image }}</p>
           {{form.errors.image}}
         </div>
         <div class="ml5 mt10 mb5 mr5">
-          <p class="light">Body</p>
-          {{ form.body }}
+          <textarea placeholder="Details" name="body" cols="40" rows="10" maxlength="4000" required="" id="id_body"></textarea>
           {{form.errors.body}}
         </div>
         <input class="login-btn ml100 mb5 mr10" type="submit" value="Create">

@@ -73,6 +73,8 @@ class RegisterForm(forms.ModelForm):
     qs = User.objects.filter(username=username)
     if qs.exists():
       raise forms.ValidationError('This username is taken.')
+    if not username.islower():
+      raise forms.ValidationError("Usernames should be in lowercase")
     return username
     
   def clean_password2(self):

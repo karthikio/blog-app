@@ -31,7 +31,7 @@
         {% endif %}
         
         {% if request.user == object.user%}
-          <a href="{% url 'profile-update-view' request.user.id %}" class="link-btn">Edit Profile</a>
+          <a href="{% url 'profile-update-view' request.user.pk %}" class="link-btn">Edit Profile</a>
         {% endif %}
       </div>
     </div>
