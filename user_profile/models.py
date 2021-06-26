@@ -9,7 +9,7 @@ def upload_path(instance, filename):
 
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
-  profile_pic = models.ImageField(default='default.png', upload_to=upload_path)
+  profile_pic = models.ImageField(default='default.jpg', upload_to=upload_path)
   name = models.CharField(max_length=255, null=True, blank=True)
   bio = models.TextField(default='Hey, I\'m using blog app', max_length=500, blank=True, null=True)
   privacy = models.BooleanField(default=False)

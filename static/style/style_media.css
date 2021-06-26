@@ -1,3 +1,4 @@
+/* mobile size */
 @media only screen and (max-width:500px){
   /* navbar */
   .logo-h2{
@@ -20,7 +21,7 @@
     z-index: 10;
     position: fixed;
     background-color: #181b1f;
-    transition: width 1s;
+    transition: width .8s;
     overflow-x: hidden;
   }
   
@@ -53,6 +54,26 @@
     margin: 6px auto;
   }
 
+  .menu-container:hover .line1{
+    width: 16px;
+    margin-right: 10px;
+    margin-left: 8px;
+  }
+
+  .line1, .line2, .line3{
+    transition: .1s;
+  }
+
+  .menu-container:hover .line2{
+    width: 26px;
+  }
+
+  .menu-container:hover .line3{
+    width: 16px;
+    margin-left: 12px;
+    margin-right: 4px;
+  }
+
   .mobile-ul{
     height: 80%;
     width: 80%;
@@ -71,4 +92,98 @@
     margin: 0;
   }
 
+  /* profile page posts */
+  .profile-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-container h1, h2{
+    font-size: 1rem;
+  }
+
+  .profile-page-post{
+    width: 90%;
+    height: auto;
+    margin: 4px;
+  }
+
+  .profile-info{
+    margin: 10px 10px;
+  }
+
+  /* post list view */
+  .post-container{
+    min-width: 98%;
+    margin: 10px 5px;
+  }
+  
+  /* post detail view */
+  .post-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .post-detail p{
+    font-size: .8rem;
+  }
+
+  .post-detail h2{
+    font-size: .9rem;
+  }
+
+  .border{
+    width: 70%;
+  }
+
+  /* footer */
+  .footer a, p{
+    font-size: .8rem;
+  }
+
+  /* form */
+  #id_bio, #id_body, #id_name, #id_title, #id_email, #id_username, #id_password1, #id_password2, #id_password{
+    width: 80vw;
+  }
+
+  /* btn */
+  .login-btn{
+    width: 80%;
+  }
+
+  /* update post */
+  .update-post h1{
+    font-size: 1.2rem;
+  }
+
+  /* contact page */
+  .contact-page h2{
+    font-size: 1.2rem;
+  }
+
+  .contact-page p{
+    font-size: .8rem;
+  }
+
+  /* private svg */
+  .private-svg, .empty-svg{
+    height: 200px;
+    width: 200px;
+  }
+
+  .private-svg-div{
+    margin: 0 10px 10px 10px;
+  }
+
+}
+
+
+/* tab size */
+@media only screen and (max-width: 950px){
+  .post-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

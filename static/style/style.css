@@ -246,7 +246,6 @@ a{
 .post-container{
   min-height: 150px;
   width: 60%;
-  min-width: 500px;
   border-radius: 8px;
   border: 1px solid #4d4d4d;
   margin: 20px auto;
@@ -294,7 +293,7 @@ a{
 }
 
 .post-pic{
-  max-width: 80%;
+  max-width: 90%;
   margin: 10px;
 }
 

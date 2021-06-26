@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block post %}
-  <div class="flex just-start all-center ">
+  <div class="flex just-start all-center post-detail">
     {% if request.user == object.author %}
       <div class="border mt20 mb 10 ml20 mr10">
         <a href="{% url 'posts-update-view' object.id %}" class="link-b ">Update post</a>

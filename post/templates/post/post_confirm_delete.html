@@ -5,17 +5,15 @@
 {% endblock %}
 
 {% block form %}
-  <div class="flex just-center flex-col all-center text-center mb20 mt40 mr10 ml10">
+  <div class="post_delete flex just-center flex-col all-center text-center mb20 mt40 mr10 ml10">
     <form method="POST">
       {% csrf_token %}
       {{ form }}
       <p class="text mb10 mt10">Are you sure about deleting, "{{object.title}}"?</p>
       <button class="red-btn" type="submit">Delete</button>
     </form>
-    <a  href="{% url 'posts-detail-view' object.id %}">
-      <button class="login-btn">
+    <a class="link-b mt5 mb5 mr5 ml5" href="{% url 'posts-detail-view' object.id %}">
         Cancel
-      </button>
     </a>
   </div>
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block form %}
-  <div class="flex just-center flex-col all-center mt20">
+  <div class="flex just-center flex-col all-center mt20 update-post">
     <h1 class="text mt10 mb20">Update {{object.title}}</h1>
     <form novalidate method="POST" enctype="multipart/form-data">
       {% csrf_token %}
@@ -11,7 +11,7 @@
           <p class="error">{{form.errors.title}}</p>
         </div>
         <div class="mt5 mr5 ml10 mb10 text">
-          {{ form.image }}
+          <input type="file" name="image" accept="image/*" id="id_image">
           <p class="error">{{form.errors.image}}</p>
         </div>
         <div class="mt5 mr5 ml5 mb10">
