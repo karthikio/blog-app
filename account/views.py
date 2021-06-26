@@ -79,3 +79,4 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     if self.request.user == user:
       return True
     return False
+

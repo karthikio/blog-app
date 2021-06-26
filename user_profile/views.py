@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Profile
 from django.views.generic import UpdateView
 from account.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -14,7 +14,7 @@ def ProfileDetailView(request, username):
     user = User.objects.get(username=username)
     obj = Profile.objects.get(user=user)
   except:
-    return HttpResponse('none')
+    return Http404
   
   context = {
     "object": obj,
