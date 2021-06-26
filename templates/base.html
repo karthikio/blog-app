@@ -14,45 +14,45 @@
   </title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/style_media.css' %}">
 </head>
 <body>
-  
-  <div id="loader-container">
-    <div id="loader"></div>
+  <div class="full-page">
+    <div id="loader-container">
+      <div id="loader"></div>
+    </div>
+
+    
+    {% include 'navbar.html' %}
+    
+    {% block popup %}
+    {% endblock %}
+    
+    {% block form %}
+    {% endblock %}
+
+    {% block email %}
+    {% endblock %}
+    
+    <div id="blocks" class="hidden">
+      {% block contact %}
+      {% endblock %}
+
+      {% block post %}
+      {% endblock %}
+
+      {% block posts %}
+      {% endblock %}
+
+      {% block profile %}
+      {% endblock %}
+    </div>
   </div>
 
   
-  {% include 'navbar.html' %}
-  
-  {% block popup %}
-  {% endblock %}
-  
-  {% block form %}
-  {% endblock %}
-
-  {% block email %}
-  {% endblock %}
-  
-  <div id="blocks" class="hidden">
-    {% block contact %}
-    {% endblock %}
-
-    {% block post %}
-    {% endblock %}
-
-    {% block posts %}
-    {% endblock %}
-
-    {% block profile %}
-    {% endblock %}
-  </div>
-
+  {% include 'footer.html' %}
   
   <script src="{% static 'script/app.js' %}"></script>
-  
 </body>
-<footer>
-  {% include 'footer.html' %}
-</footer>
 </html>

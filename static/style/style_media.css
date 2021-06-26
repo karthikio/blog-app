@@ -1,0 +1,74 @@
+@media only screen and (max-width:500px){
+  /* navbar */
+  .logo-h2{
+    font-size: 1.2rem;
+  }
+  .logo-svg{
+    height: 20px;
+    width: 20px;
+  }
+  .nav-l{
+    display: none;
+  }
+  .nav-s{
+    /* don't add padding in here */
+    display: block;
+    width: 0;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    position: fixed;
+    background-color: #181b1f;
+    transition: width 1s;
+    overflow-x: hidden;
+  }
+  
+  
+
+  .nav-s ul, .nav-s li, .nav-s a{
+    display: flex;
+  }
+
+  .menu-container{
+    display: block;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    margin: 2px 20px;
+    cursor: pointer;
+  }
+  .menu{
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 4px auto;
+  }
+  .line{
+    width: 24px;
+    height: 2px;
+    background-color: #ccc;
+    border-radius: 2px;
+    margin: 6px auto;
+  }
+
+  .mobile-ul{
+    height: 80%;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  .menu-bg{
+    border-radius: 10px;
+    height: 40px;
+    width: 90%;
+    background-color: #4f4f4f65;
+    margin: 20px auto;
+  }
+
+  .nav-s .menu-container{
+    margin: 0;
+  }
+
+}

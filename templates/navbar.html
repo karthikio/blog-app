@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="{% static 'style/style.css' %">
+<link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %">
 
 
 <div class="nav-container  just-between flex all-center">
   <div class="logo-container mr10 ml40 flex all-center">
     <svg class='logo-svg' aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-right" class="svg-inline--fa fa-quote-right fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg>
-    <h2 class="h2 text">Blog App</h2>
+    <h2 class="h2 text logo-h2">Blog App</h2>
   </div>
-  <nav class="flex-end">
+  <nav class="flex-end nav-l">
     <ul class="flex all-center mr40 ml10 ">
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'posts-list-view' %}">Home</a></li>
       <li class="mt5 mb5 mr10 ml10"><a class=" bold link-c" href="{% url 'contact-view' %}">Contact</a></li>
@@ -33,4 +33,47 @@
       {% endif %}
     </ul>
   </nav>
+  <div id="id_menu_container" class="toggle menu-container flex all-center just-center">
+    <div class="menu flex-end ">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+  </div>
+  
 </div>
+
+<!-- mobile nav -->
+<nav class="nav-s" id="nav-small">
+  <div class="flex just-between all-center menu-bg">
+    <li class="flex ml5" >
+      <div class="title-bar-pic-container">
+        {% if request.user.profile.profile_pic.url %}
+          <a href="{% url 'profile-detail-view' request.user.username %}">
+            <img class="title-bar-pic" src="{{ request.user.profile.profile_pic.url }}" alt="">
+            {% endif %}
+          </div>
+          <p class="bold link-c mr20 mt5 mb5">{{request.user.username}}</p>
+        </a>
+    </li>
+    <div id="id_menu_container_2" class="menu-container flex all-center just-center">
+      <div class="menu mr5 ">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="mobile-ul flex flex-col just-between all-center ">
+    
+    <li ><a class=" bold link-c" href="{% url 'posts-list-view' %}">Home</a></li>
+    <li ><a class=" bold link-c" href="{% url 'contact-view' %}">Contact</a></li>
+    {% if request.user.is_authenticated %}
+      <li><a class="bold link-c" href="{% url 'posts-create-view' %}">New post</a></li>
+      <li><a class="bold link-c" href="{% url 'profile-detail-view' request.user.username %}">Profile</a></li>
+      <li><a class="bold link-c" href="{% url 'user-delete-view' request.user.id %}">Deactivate</a></li>
+      <li><a class="bold link-c" href="{% url 'logout-view' %}">Logout</a></li>
+    {% endif %}
+  </ul>
+</nav>
